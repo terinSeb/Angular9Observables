@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { UserService } from './user.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,16 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'ObservablesAngular9';
+  userActivated=false;
+  /**
+   *
+   */
+  constructor(private userService : UserService) {
+    
+  }
+  ngOnInit(){
+    this.userService.activatedEmitter.subscribe(didActivated => {
+      this.userActivated = didActivated;
+    })
+  }
 }
